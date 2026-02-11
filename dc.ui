@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1046</width>
-    <height>743</height>
+    <width>1139</width>
+    <height>745</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -172,6 +172,19 @@
                </property>
               </widget>
              </item>
+             <item>
+              <spacer name="horizontalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
             </layout>
            </widget>
           </item>
@@ -333,6 +346,19 @@
                </property>
               </widget>
              </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
             </layout>
            </widget>
           </item>
@@ -450,6 +476,19 @@
                </property>
               </widget>
              </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
             </layout>
            </widget>
           </item>
@@ -547,6 +586,19 @@
                 </date>
                </property>
               </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_14">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </widget>
@@ -908,39 +960,83 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBox_7">
+           <widget class="QGroupBox" name="groupBox_9">
             <property name="title">
-             <string>测量判据</string>
+             <string>交叉调整率</string>
             </property>
-            <layout class="QGridLayout" name="gridLayout_8">
-             <item row="1" column="6">
-              <widget class="QLabel" name="label_51">
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineEdit_secondaryMinLoadCondition">
+               <property name="text">
+                <string>10</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLineEdit" name="lineEdit_secondaryMaxLoadCondition">
+               <property name="text">
+                <string>100</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_64">
+               <property name="text">
+                <string>~</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_61">
+               <property name="text">
+                <string>主路带载值:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_63">
                <property name="text">
                 <string>%</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_37">
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="lineEdit_mainLoadCondition">
                <property name="text">
-                <string>负载调节率:</string>
+                <string>50</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="label_50">
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_62">
                <property name="text">
-                <string>正输出</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignmentFlag::AlignCenter</set>
+                <string>辅路载值变化范围:</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="5">
-              <widget class="QLineEdit" name="lineEdit_4">
-               <property name="placeholderText">
-                <string>单路输出空置</string>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_65">
+               <property name="text">
+                <string>%</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_7">
+            <property name="title">
+             <string>测量判据</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_66">
+               <property name="text">
+                <string>交叉调节率&lt;</string>
                </property>
               </widget>
              </item>
@@ -951,26 +1047,6 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="4">
-              <widget class="QLabel" name="label_53">
-               <property name="text">
-                <string>负输出</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="label_52">
-               <property name="text">
-                <string>正输出</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignmentFlag::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QLineEdit" name="lineEdit_lineRegulation"/>
-             </item>
              <item row="1" column="3">
               <widget class="QLabel" name="label_44">
                <property name="text">
@@ -978,10 +1054,77 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_36">
+             <item row="3" column="4">
+              <widget class="QLabel" name="label_46">
+               <property name="layoutDirection">
+                <enum>Qt::LayoutDirection::LeftToRight</enum>
+               </property>
                <property name="text">
-                <string>线性调节率:</string>
+                <string>效率&gt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_37">
+               <property name="text">
+                <string>负载调节率:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="5">
+              <widget class="QLineEdit" name="lineEdit_yita">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_49">
+               <property name="text">
+                <string>负输出&lt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLineEdit" name="lineEdit_lineRegulation"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_50">
+               <property name="text">
+                <string>正输出&lt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="6">
+              <widget class="QLabel" name="label_47">
+               <property name="text">
+                <string>%</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="label_52">
+               <property name="text">
+                <string>正输出&lt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_51">
+               <property name="text">
+                <string>%</string>
                </property>
               </widget>
              </item>
@@ -995,51 +1138,35 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="4">
-              <widget class="QLabel" name="label_49">
-               <property name="text">
-                <string>负输出</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="5">
-              <widget class="QLineEdit" name="lineEdit_5">
+             <item row="1" column="5">
+              <widget class="QLineEdit" name="lineEdit_lineRegulation_negative">
                <property name="placeholderText">
                 <string>单路输出空置</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="6">
-              <widget class="QLabel" name="label_47">
+             <item row="2" column="5">
+              <widget class="QLineEdit" name="lineEdit_loadRegulation_negative">
+               <property name="placeholderText">
+                <string>单路输出空置</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_36">
                <property name="text">
-                <string>%</string>
+                <string>线性调节率:</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="5">
-              <widget class="QLineEdit" name="lineEdit_3">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="4">
-              <widget class="QLabel" name="label_46">
-               <property name="layoutDirection">
-                <enum>Qt::LayoutDirection::LeftToRight</enum>
-               </property>
+             <item row="2" column="4">
+              <widget class="QLabel" name="label_53">
                <property name="text">
-                <string>效率:</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignmentFlag::AlignCenter</set>
+                <string>负输出&lt;</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="0" colspan="3">
+             <item row="0" column="0" colspan="6">
               <widget class="QWidget" name="widget_6" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1072,6 +1199,16 @@
                  </widget>
                 </item>
                </layout>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="2">
+              <widget class="QLineEdit" name="lineEdit_crossR"/>
+             </item>
+             <item row="3" column="3">
+              <widget class="QLabel" name="label_67">
+               <property name="text">
+                <string>%</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -1208,7 +1345,7 @@
            </spacer>
           </item>
           <item row="5" column="3">
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="pushButton_test5">
             <property name="text">
              <string>开始测试</string>
             </property>
@@ -1224,9 +1361,29 @@
           <item row="6" column="0">
            <widget class="QLabel" name="label_25">
             <property name="text">
-             <string>6.</string>
+             <string>6.纹波电压</string>
             </property>
            </widget>
+          </item>
+          <item row="6" column="3">
+           <widget class="QPushButton" name="pushButton_test6">
+            <property name="text">
+             <string>开始测试</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <spacer name="horizontalSpacer_15">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -1248,14 +1405,14 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="pushButton_Excel">
             <property name="text">
              <string>建立新的数据检测表</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pushButton_ExcelSelect">
             <property name="text">
              <string>选择工作表</string>
             </property>
@@ -1275,9 +1432,9 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="pushButton_allltest">
             <property name="text">
-             <string>开始测试</string>
+             <string>开始测试(all)</string>
             </property>
            </widget>
           </item>

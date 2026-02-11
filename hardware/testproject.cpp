@@ -18,6 +18,17 @@ TestProject::TestProject(QObject *parent, Device *inputDe, Device *loadDe, PM *p
     stateTimer = new QTimer(this);
 }
 
+TestProject::TestProject(QObject *parent, Device *inputDe,
+                         Device *loadDe_positive, Device *loadDe_negative,
+                         PM *pm)
+    :QObject(parent)
+    ,inputDevice(inputDe)
+    ,loadDevice_positive(loadDe_positive)
+    ,loadDevice_negative(loadDe_negative)
+{
+    stateTimer = new QTimer(this);
+}
+
 TestProject::~TestProject()
 {
 
@@ -182,6 +193,7 @@ void TestProject::handleStateMachine_LoadR()
         stateLoadR = TestState_LoadRegulation::State_getContrl; //回到测试起点
         emit end_LoadR();
         stateTimer->stop();
+        break;
     default:
         break;
     }
@@ -224,6 +236,68 @@ void TestProject::handleStateMachine_Input_A()
         stateInput_A = TestState_input_A::State_getContrl; //回到测试开始
         emit end_Input_A();
         stateTimer->stop();
+        break;
+    default:
+        break;
+    }
+}
+
+void TestProject::startTestSequence_crossRegulation()
+{
+    disconnect(stateTimer, nullptr, nullptr, nullptr);
+    connect( stateTimer, &QTimer::timeout,
+            this, &TestProject::handleStateMachine_crossRegulation);
+    stateCrossR = TestState_crossRegulation::State_getContrl;
+    handleStateMachine_crossRegulation();
+}
+
+void TestProject::handleStateMachine_crossRegulation()
+{
+    switch (stateCrossR) {
+    case TestState_crossRegulation::State_getContrl:
+        inputDevice->sendCommand("SYSTem:REMote");
+        loadDevice_positive->sendCommand("SYSTem:REMote");
+        loadDevice_negative->sendCommand("SYSTem:REMote");
+        stateCrossR = TestState_crossRegulation::State_setStandardInputV;
+        stateTimer->start(200);
+        break;
+    case TestState_crossRegulation::State_setStandardInputV:
+        inputDevice->sendCommand(QString("VOLT %1").arg(powerModule->inputV_standard));
+        stateCrossR = TestState_crossRegulation::State_turnOnInput;
+        stateTimer->start(200);
+        break;
+    case TestState_crossRegulation::State_turnOnInput:
+        inputDevice->sendCommand("OUTP ON");
+        stateCrossR = TestState_crossRegulation::State_set_mainLoad_secondaryMinLoad;
+        stateTimer->start(200);
+        break;
+    case TestState_crossRegulation::State_set_mainLoad_secondaryMinLoad:
+        loadDevice_positive->sendCommand(QString("CURR %1").arg(powerModule->mainLoadCondition));
+        loadDevice_negative->sendCommand(QString("CURR %1").arg(powerModule->secondaryMinLoadCondition));
+        stateCrossR = TestState_crossRegulation::State_getOutputV_mainLoad_secondaryMinLoad;
+        stateTimer->start(500); // 上负载多等一会
+        break;
+    case TestState_crossRegulation::State_getOutputV_mainLoad_secondaryMinLoad:
+        loadDevice_positive->sendCommand("MEAS:VOLT?");
+        if( loadDevice_positive->serial->waitForReadyRead(5000) ){
+            powerModule->outputV_secondaryMinLoad = loadDevice_positive->read();
+        }
+        stateCrossR = TestState_crossRegulation::State_setSecondaryMaxLoad;
+        stateTimer->start(200);
+        break;
+    case TestState_crossRegulation::State_setSecondaryMaxLoad:
+        loadDevice_negative->sendCommand(QString("CURR %1").arg(powerModule->secondaryMaxLoadCondition));
+        stateCrossR = TestState_crossRegulation::State_getOutputV_mainLoad_secondaryMaxLoad;
+        stateTimer->start(200);
+        break;
+    case TestState_crossRegulation::State_getOutputV_mainLoad_secondaryMaxLoad:
+        loadDevice_positive->sendCommand("MEAS:VOLT?");
+        if( loadDevice_positive->serial->waitForReadyRead(5000) ){
+            powerModule->outputV_secondaryMaxLoad = loadDevice_positive->read();
+        }
+        stateCrossR = TestState_crossRegulation::State_getContrl;
+        stateTimer->stop();
+        break;
     default:
         break;
     }
