@@ -49,6 +49,10 @@ enum class TestState_crossRegulation{
     State_setSecondaryMaxLoad, // 将辅路负载提高到最大
     State_getOutputV_mainLoad_secondaryMaxLoad
 };
+// 纹波电压 待写
+enum class TestState_rippleV{
+
+};
 
 class TestProject : public QObject
 {
